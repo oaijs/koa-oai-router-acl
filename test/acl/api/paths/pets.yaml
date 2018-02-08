@@ -1,0 +1,35 @@
+/pets:
+  get:
+    description: "Returns all pets from the system that the user has access to"
+    produces:
+      - "application/json"
+    tags:
+      - pets
+    x-oai-acl:
+      resource: pets
+      permission: findPets
+    x-oai-middleware:
+      - file: pets
+        handler: findPets
+    responses:
+      default:
+        description: "unexpected error"
+        schema:
+          $ref: "#/definitions/ErrorModel"
+
+
+/pets-unset:
+  get:
+    description: "Returns all pets from the system that the user has access to"
+    produces:
+      - "application/json"
+    tags:
+      - pets
+    x-oai-middleware:
+      - file: pets
+        handler: findPets
+    responses:
+      default:
+        description: "unexpected error"
+        schema:
+          $ref: "#/definitions/ErrorModel"
